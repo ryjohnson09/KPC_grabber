@@ -26,7 +26,7 @@ for genome_file in args.files:
 	if genome_file[-2:] == "gz":
 		run_blastn = subprocess.check_output("gzip -dc " + genome_file + " | blastn -db tmp.txt -outfmt 6", shell=True)
 	else:
-		run_blastn = subprocess.check_output("blastn -db tmp.txt -query genome_file -outfmt 6", shell=True)
+		run_blastn = subprocess.check_output("blastn -db tmp.txt -query " + genome_file + " -outfmt 6", shell=True)
 	
 	blast_results = run_blastn.rstrip().split('\n')
 
