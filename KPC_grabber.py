@@ -49,7 +49,11 @@ for genome_file in args.files:
 			all_hits = ""
          
 		        #if passes, extract full sequnce record using BioPython
-			unzipped_genome_file = gzip.open(genome_file, 'rb')
+			if genome_file[-2:] == "gz":
+				unzipped_genome_file = gzip.open(genome_file, 'rb')
+			else:
+				unzipped_genome_file = open(genome_file, 'rb')
+				
 			full_fasta = SeqIO.parse(unzipped_genome_file, "fasta")
 
 			for seq in full_fasta:
