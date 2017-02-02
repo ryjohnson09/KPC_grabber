@@ -22,8 +22,13 @@ subprocess.check_output("makeblastdb -in tmp.txt -dbtype nucl", shell=True)
 
 for genome_file in args.files:
 
-	run_blastn = subprocess.check_output("gzip -dc " + genome_file + " | blastn -db tmp.txt -outfmt 6", shell=True)
-blast_results = run_blastn.rstrip().split('\n')
+	#check if .gz file
+	if genome_file[-2:] == "gz":
+		run_blastn = subprocess.check_output("gzip -dc " + genome_file + " | blastn -db tmp.txt -outfmt 6", shell=True)
+	else:
+		run_blastn = subprocess.check_output("blastn -db tmp.txt -query genome_file -outfmt 6", shell=True)
+	
+	blast_results = run_blastn.rstrip().split('\n')
 
 	#if no blast results, delete file
 	if blast_results[0] == "":
