@@ -8,5 +8,5 @@ This will extract KPC (and user definied flanking regions) from fasta sequences 
 If all criteria are met, the program extracts the KPC sequence (and flanking regions). If the KPC gene is on the negative strand, the program with extract the reverse complement so that all extracted sequences are in the same orientation.
 
 
-###Example Usage (extract KPC from all .gz files in directory with 1000bp flanking regions
+### Example Usage (extract KPC from all .gz files in directory with 1000bp flanking regions
 > python KPC_grabber.py -f *.gz -o output.fasta -l 1000
